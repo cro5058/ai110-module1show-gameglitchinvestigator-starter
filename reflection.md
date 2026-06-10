@@ -7,10 +7,9 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - What did the game look like the first time you ran it?
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
-  - 
+  - The hints were indeed backwards
   - The secret was getting converted to a string on even-numbered guess attempts.
-  - The attempt counting logic was not quite right -- At the end,
-  the app should have displayed that I had 0 attempts left, but it said I still had 1 attempt.
+  - The attempt counting logic was not quite right.
   - The attempt log was always one attempt behind in logging what I typed
 
 **Bug Reproduction Log**
