@@ -7,6 +7,11 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - What did the game look like the first time you ran it?
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
+  - 
+  - The secret was getting converted to a string on even-numbered guess attempts.
+  - The attempt counting logic was not quite right -- At the end,
+  the app should have displayed that I had 0 attempts left, but it said I still had 1 attempt.
+  - The attempt log was always one attempt behind in logging what I typed
 
 **Bug Reproduction Log**
 
@@ -14,9 +19,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Guess of 18 (secret was 16) | "Go Lower" hint | "Go Higher" hint | none |
+| Guess of 18 (secret was 21) | "Go Higher" hint | "Go Lower" hint | none |
+| Guess of 15 (1 attempt used) | Attempts remaining: 7 | Attempts remaining: 6 | none |
 
 ---
 
