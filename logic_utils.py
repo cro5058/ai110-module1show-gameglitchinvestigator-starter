@@ -1,7 +1,9 @@
 from typing import Tuple, Union
 
+# FIX: added type hints.
 def get_range_for_difficulty(difficulty: str) -> Tuple[int, int]:
     """Return (low, high) inclusive range for a given difficulty."""
+    # FIX: rearranged the different ranges for the different difficulty levels.
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
@@ -11,6 +13,7 @@ def get_range_for_difficulty(difficulty: str) -> Tuple[int, int]:
     return 1, 50
 
 
+# FIX: added type hints.
 def parse_guess(raw: str) -> Tuple[bool, Union[int, None], Union[str, None]]:
     """
     Parse user input into an int guess.
@@ -36,12 +39,14 @@ def parse_guess(raw: str) -> Tuple[bool, Union[int, None], Union[str, None]]:
     return True, value, None
 
 
-def check_guess(guess: int, secret: int) -> str:
+# FIX: added type hints.
+def check_guess(guess: int, secret: int) -> Tuple[str, str]:
     """
     Compare guess to secret and return (outcome, message).
 
     outcome examples: "Win", "Too High", "Too Low"
     """
+    # FIX: removed erroneous string casting.
     if guess == secret:
         return "Win", "🎉 Correct!"
     elif guess > secret:
@@ -50,6 +55,7 @@ def check_guess(guess: int, secret: int) -> str:
         return "Too Low", "📈 Go HIGHER!"
 
 
+# FIX: added type hints.
 def update_score(current_score: int, outcome: str, attempt_number: int) -> int:
     """Update score based on outcome and attempt number."""
     if outcome == "Win":
@@ -58,6 +64,6 @@ def update_score(current_score: int, outcome: str, attempt_number: int) -> int:
             points = 10
         return current_score + points
 
+    # FIX: made it so the score would only decrease with incorrect guesses
     if outcome == "Too High" or outcome == "Too Low":
         return current_score - 5
-    return current_score
