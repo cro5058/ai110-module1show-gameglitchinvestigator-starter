@@ -25,29 +25,46 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+   - This is a number guessing game, where a user has a finite number of guesses to determine the secret number.
+
+- [x] Detail which bugs you found.
+   - This game was riddled with bugs. On the logical side, these included faulty difficulty levels, bad hints, and problematic score calculations.
+   - On the UI side, bugs included the game not resetting when the difficulty was changed, as well as guess history and attempt counts not being updated after the user made a guess.
+
+- [x] Explain what fixes you applied.
+   - I fixed all the above bugs with the help of Claude.
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
-
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+1. Open the web app.
+2. Open the sidebar.
+3. Click on the dropdown menu for difficulty.
+4. Change the difficulty to Hard.
+5. User enters a guess of 50 → "Too Low".
+6. Score updates.
+7. User enters a guess of 75 → "Too Low".
+8. Score updates.
+9. User enters a guess of 90 → "Too Low".
+10. Score updates.
+11. User enters a guess of 95.
+12. User wins the game.
+13. Game animation shows and game ends.
 
 ## 🧪 Test Results
 
-```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
-```
+ pytest .\tests\test_game_logic.py
+============================================================================= test session starts ==============================================================================
+platform win32 -- Python 3.14.5, pytest-9.0.3, pluggy-1.6.0
+rootdir: C:\Users\ryano\Desktop\codepath\AI110\ai110-module1show-gameglitchinvestigator-starter
+plugins: anyio-4.13.0
+collected 16 items                                                                                                                                                              
+
+tests\test_game_logic.py ................                                                                                                                                 [100%]
+
+============================================================================== 16 passed in 0.16s ==============================================================================
 
 ## 🚀 Stretch Features
 
