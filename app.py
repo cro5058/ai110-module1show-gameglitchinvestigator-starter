@@ -1,6 +1,7 @@
 import random
 import streamlit as st
 
+# FIX: factored logic_utils into a separate file.
 from logic_utils import (
     get_range_for_difficulty,
     parse_guess,
@@ -11,7 +12,9 @@ from logic_utils import (
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
 st.title("🎮 Game Glitch Investigator")
-st.caption("An AI-generated guessing game. Something is off.")
+
+# FIX: changed the title after fixing bugs.
+st.caption("An AI- and human-generated guessing game.")
 
 st.sidebar.header("Settings")
 
@@ -30,6 +33,7 @@ attempt_limit = attempt_limit_map[difficulty]
 
 low, high = get_range_for_difficulty(difficulty)
 
+# FIX: made the game reset if the uesr changes difficulty.
 if "difficulty" not in st.session_state:
     st.session_state.difficulty = difficulty
 elif st.session_state.difficulty != difficulty:
@@ -39,6 +43,7 @@ elif st.session_state.difficulty != difficulty:
     st.session_state.score = 0
     st.session_state.status = "playing"
     st.session_state.history = []
+    # FIX: made the history and attempts update and display correctly.
     st.session_state.feedback = None
     st.session_state.celebrate = False
     st.rerun()
@@ -61,6 +66,7 @@ if "status" not in st.session_state:
 if "history" not in st.session_state:
     st.session_state.history = []
 
+# FIX: made the history and attempts update and display correctly.
 if "feedback" not in st.session_state:
     st.session_state.feedback = None
 
@@ -69,11 +75,13 @@ if "celebrate" not in st.session_state:
 
 st.subheader("Make a guess")
 
+# FIX: made the guessing range update dynamically.
 st.info(
     f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
 
+# FIX: made the history and attempts update and display correctly.
 if st.session_state.celebrate:
     st.balloons()
     st.session_state.celebrate = False
@@ -108,6 +116,7 @@ if new_game:
     st.session_state.score = 0
     st.session_state.status = "playing"
     st.session_state.history = []
+    # FIX: made the history and attempts update and display correctly.
     st.session_state.feedback = None
     st.session_state.celebrate = False
     st.rerun()
@@ -128,6 +137,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
+        # FIX: only count valid numbers as attempts.
         st.session_state.attempts += 1
 
         secret = st.session_state.secret
@@ -161,6 +171,7 @@ if submit:
         else:
             st.session_state.feedback = None
 
+    # FIX: made the history and attempts update and display correctly.
     st.rerun()
 
 st.divider()
