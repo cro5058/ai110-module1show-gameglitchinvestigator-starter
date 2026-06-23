@@ -31,8 +31,14 @@ Document at least 3 bugs you found. Add rows as needed.
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+  - In this project, I used Claude exclusively.
+
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+  - Claude suggested a way of resetting the game when the user changed the difficulty, which worked correctly and stood up to testing. 
+  - I tested the new difficulty changing feature by clicking "new game" in two cases: one where I had already made a guess, and another where I had not yet made any guesses. I repeated these cases with all three levels of difficulty. Additionally, I checked to see if the game recognized my chosen difficulty level, and whether it reset the history, attempt number, and secret number variables upon choosing the new difficulty.
+
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+  - To fix a bug where the site did not display an updated history and attempt count after a user made and submitted a guess, Claude incorrectly suggested grouping the guess text box and "submit guess" button into a "form" element. I was suspicious of this suggestion from the beginning because it fundamentally changed the site's user interface, but the suggestion ultimately proved to be incorrect when the same issue persisted despite the button and text box being grouped into a form.
 
 ---
 
