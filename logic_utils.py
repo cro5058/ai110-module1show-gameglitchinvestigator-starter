@@ -1,4 +1,6 @@
-def get_range_for_difficulty(difficulty: str):
+from typing import Tuple, Union
+
+def get_range_for_difficulty(difficulty: str) -> Tuple[int, int]:
     """Return (low, high) inclusive range for a given difficulty."""
     if difficulty == "Easy":
         return 1, 20
@@ -6,14 +8,16 @@ def get_range_for_difficulty(difficulty: str):
         return 1, 50
     if difficulty == "Hard":
         return 1, 100
-    return 1, 100
+    return 1, 50
 
 
-def parse_guess(raw: str):
+def parse_guess(raw: str) -> Tuple[bool, Union[int, None], Union[str, None]]:
     """
     Parse user input into an int guess.
 
-    Returns: (ok: bool, guess_int: int | None, error_message: str | None)
+    Returns: (ok: bool, 
+              guess_int: int | None, 
+              error_message: str | None)
     """
     if raw is None:
         return False, None, "Enter a guess."
@@ -32,7 +36,7 @@ def parse_guess(raw: str):
     return True, value, None
 
 
-def check_guess(guess, secret) -> str:
+def check_guess(guess: int, secret: int) -> str:
     """
     Compare guess to secret and return (outcome, message).
 
@@ -46,7 +50,7 @@ def check_guess(guess, secret) -> str:
         return "Too Low", "📈 Go HIGHER!"
 
 
-def update_score(current_score: int, outcome: str, attempt_number: int):
+def update_score(current_score: int, outcome: str, attempt_number: int) -> int:
     """Update score based on outcome and attempt number."""
     if outcome == "Win":
         points = 100 - 10 * (attempt_number + 1)
