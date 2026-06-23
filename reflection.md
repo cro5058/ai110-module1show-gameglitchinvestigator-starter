@@ -7,10 +7,11 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - What did the game look like the first time you ran it?
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
-  - The hints were indeed backwards
+  - The hints were indeed backwards -- for example, when the 
+    correct answer was 89 and I guessed 99, it told me to go higher,
+    and when the correct answer was 89 and I guessed 17, it told me to go lower.
   - The secret was getting converted to a string on even-numbered guess attempts.
-  - The attempt counting logic was not quite right.
-  - The attempt log was always one attempt behind in logging what I typed
+  - The attempt counting logic was not quite right -- the attempt log was always one attempt behind in logging what I typed.
 
 **Bug Reproduction Log**
 
