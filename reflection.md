@@ -11,7 +11,10 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
     correct answer was 89 and I guessed 99, it told me to go higher,
     and when the correct answer was 89 and I guessed 17, it told me to go lower.
   - The secret was getting converted to a string on even-numbered guess attempts.
-  - The attempt counting logic was not quite right -- the attempt log was always one attempt behind in logging what I typed.
+  - The attempt counting logic was not quite right -- 
+    the attempt log was always one attempt behind in logging what I typed.
+  - The easy, medium, and hard levels were wrong -- 
+    easy should have a range of 1 to 20, medium from 1 to 50, and hard from 1 to 100.
 
 **Bug Reproduction Log**
 
