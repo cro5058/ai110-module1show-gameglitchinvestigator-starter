@@ -39,6 +39,8 @@ elif st.session_state.difficulty != difficulty:
     st.session_state.score = 0
     st.session_state.status = "playing"
     st.session_state.history = []
+    st.session_state.feedback = None
+    st.session_state.celebrate = False
     st.rerun()
 
 st.sidebar.caption(f"Range: {low} to {high}")
@@ -59,12 +61,26 @@ if "status" not in st.session_state:
 if "history" not in st.session_state:
     st.session_state.history = []
 
+if "feedback" not in st.session_state:
+    st.session_state.feedback = None
+
+if "celebrate" not in st.session_state:
+    st.session_state.celebrate = False
+
 st.subheader("Make a guess")
 
 st.info(
     f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
+
+if st.session_state.celebrate:
+    st.balloons()
+    st.session_state.celebrate = False
+
+if st.session_state.feedback:
+    level, text = st.session_state.feedback
+    getattr(st, level)(text)
 
 with st.expander("Developer Debug Info"):
     st.write("Secret:", st.session_state.secret)
@@ -92,7 +108,8 @@ if new_game:
     st.session_state.score = 0
     st.session_state.status = "playing"
     st.session_state.history = []
-    st.success("New game started.")
+    st.session_state.feedback = None
+    st.session_state.celebrate = False
     st.rerun()
 
 if st.session_state.status != "playing":
@@ -107,7 +124,7 @@ if submit:
 
     if not ok:
         st.session_state.history.append(raw_guess)
-        st.error(err)
+        st.session_state.feedback = ("error", err)
     else:
         st.session_state.history.append(guess_int)
 
@@ -117,9 +134,6 @@ if submit:
 
         outcome, message = check_guess(guess_int, secret)
 
-        if show_hint:
-            st.warning(message)
-
         st.session_state.score = update_score(
             current_score=st.session_state.score,
             outcome=outcome,
@@ -127,20 +141,27 @@ if submit:
         )
 
         if outcome == "Win":
-            st.balloons()
             st.session_state.status = "won"
-            st.success(
+            st.session_state.celebrate = True
+            st.session_state.feedback = (
+                "success",
                 f"You won! The secret was {st.session_state.secret}. "
-                f"Final score: {st.session_state.score}"
+                f"Final score: {st.session_state.score}",
             )
+        elif st.session_state.attempts >= attempt_limit:
+            st.session_state.status = "lost"
+            st.session_state.feedback = (
+                "error",
+                f"Out of attempts! "
+                f"The secret was {st.session_state.secret}. "
+                f"Score: {st.session_state.score}",
+            )
+        elif show_hint:
+            st.session_state.feedback = ("warning", message)
         else:
-            if st.session_state.attempts >= attempt_limit:
-                st.session_state.status = "lost"
-                st.error(
-                    f"Out of attempts! "
-                    f"The secret was {st.session_state.secret}. "
-                    f"Score: {st.session_state.score}"
-                )
+            st.session_state.feedback = None
+
+    st.rerun()
 
 st.divider()
 st.caption("Built by an AI that claims this code is production-ready.")
