@@ -70,6 +70,8 @@ Document at least 3 bugs you found. Add rows as needed.
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+  - Streamlit reruns cause the web app to be reloaded.
+  - Session state is a set of variables that the web app must keep track of to ensure the information and appearance of the app are always up to date as the user uses it.
 
 ---
 
@@ -77,5 +79,10 @@ Document at least 3 bugs you found. Add rows as needed.
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
   - This could be a testing habit, a prompting strategy, or a way you used Git.
+  - In future projects, I would like to continue the practice of adding FIXME comments to code that needs to be edited, and FIX comments where it has been fixed. 
+
 - What is one thing you would do differently next time you work with AI on a coding task?
+  - Next time, I would try to make my prompts simpler and clearer.
+
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+  - This project made me trust AI-generated code more. I was able to see AI as a partner more than I have on previous projects.
